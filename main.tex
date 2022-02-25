@@ -198,10 +198,10 @@
             if
             \[\psi_{\lambda_1}(\alpha_1) \psi_{\lambda_2}(\alpha_2) ...
               \psi_{\lambda_n}(\alpha_n) \sim \psi_{\mu_1}(\beta_1)
-              \psi_{\mu_2}(\alpha_2) ... \psi_{\mu_m}(\mu_m)\]
+              \psi_{\mu_2}(\beta_2) ... \psi_{\mu_m}(\beta_m)\]
             Then, $\sigma(\psi_{\lambda_1}(\alpha_1) ...
               \psi_{\lambda_n}(\alpha_n)) \sim \sigma(\psi_{\mu_1}(\beta_1) ...
-              \psi_{\mu_m}(\mu_m))$
+              \psi_{\mu_m}(\beta_m))$
  
             So, \quad \quad \ \ $p_{\lambda_1}(\alpha_1) ... p_{\lambda_n}(\alpha_n)
               \sim p_{\mu_1}(\beta_1) ... p_{\mu_m}(\beta_m)$
@@ -276,6 +276,101 @@
       \end{column}
     \end{columns}
   \end{frame}
+  \begin{frame}
+    \frametitle{Seifert -- Van Kampen Theorem Proof -- Part 2}
+    \begin{columns}
+      \begin{column}[T]{0.5\textwidth}
+        \begin{itemize}
+          \item We'd like to show that
+              \[\psi_{\lambda_1}(\alpha_1) ... \psi_{\lambda_n}
+            (\alpha_n) = \psi_{\mu_1}(\beta_1) ... \psi_{\mu_m}(\beta_m)\]
+            Implies
+             \[p_{\lambda_1}(\alpha_1) ... p_{\lambda_n}(\alpha_n) =
+              p_{\mu_1}(\beta_1) ... p_{\mu_1}(\beta_1) \]
+
+            Since paths are invertible, and everything involved is a homomorphism,
+            we can put everything on one side:
+
+            \[\psi_{\lambda_1}(\alpha_1) ... \psi_{\lambda_n}(\alpha_n)
+              \psi_{\mu_m}(\beta_m^{-1}) ... \psi_{\mu_1}(\beta_1^{-1}) = 1\]
+
+            Implies
+              \[p_{\lambda_1}(\alpha_1) ... p_{\lambda_n}(\alpha_n)
+              p_{\mu_m}(\beta_m^{-1}) ... p_{\mu_1}(\beta_1^{-1}) = 1\]
+
+            So, it'll suffice to show,
+            $\psi_{\lambda_1}(\alpha_1) ... \psi_{\lambda_n}(\alpha_n) = 1$ implies
+            $p_{\lambda_1}(\alpha_1) ... p_{\lambda_n}(\alpha_n) = 1$
+
+            Let $f_i$ represent $\psi_{\lambda_i}(\alpha_i)$ so
+            $\psi_{\lambda_i}(\alpha_i) = [f_i]_{\pi_1(X)}$.
+            If $\psi_{\lambda_1}(\alpha_1) ... \psi_{\lambda_n}(\alpha_n) = 1$,
+            there's a continuous function $F : [0,1]x[0,1] \rightarrow X$ with
+            $F(1,t) = F(s,0) = F(s,1) = x_0$,
+            \[F(0,t) = \begin{cases} f_1 & [0,\frac{1}{n}) \\ f_2 & [\frac{1}{n}, \frac{2}{n}) \\ ... \end{cases}\]
+
+        \end{itemize}
+      \end{column}
+      \begin{column}[T]{0.5\textwidth}
+        \begin{itemize}
+          \item Using the Lebesgue number, split up $[0,1]x[0,1]$ into rectangles
+            so each fits in a single $U_\lambda$, making sure that each $\frac{i}{n}$ is at a boundary:
+            \begin{center}
+              \includegraphics[width=0.4\textwidth]{img/proof-pt2-overview.JPG}
+            \end{center}
+          \item For each intersection, add a line $k_{ij}$ going from the intersection to $x_0$, contained in the $U_\lambda$'s of all four surrounding rectangles.
+          \item In each line below, add $k_{ij}$'s as necessary to put them in the fundemental group:
+
+            For each rectangle, since it's contained in $U_\lambda$,
+            \begin{center}
+              \includegraphics[width=0.7\textwidth]{img/proof-pt2-each-rectangle.JPG}
+            \end{center}
+
+          \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{frame}
+  \begin{frame}
+    \begin{columns}
+      \begin{column}[T]{0.5\textwidth}
+        \begin{itemize}
+          \item Now, remember that
+            \[\begin{tikzcd}[ampersand replacement=\&]
+              \pi_1(U_\lambda) \ar[rd, "p_\lambda"]
+              \ar[r,"\phi_{\lambda\mu}"] \& \pi_1(U_\mu) \ar[d, "p_\mu"]\\
+                  \& H
+              \end{tikzcd}\]
+            \begin{center}
+              \includegraphics[width=0.5\textwidth]{img/proof-pt2-pair-rectangle.JPG}
+            \end{center}
+
+          \item Notice that along the left, top, and right edges, $p$ of the trivial
+            loops is $1$, so the whole composition is $1$.
+
+          \item Now, we can apply the previous two parts a finite number of times to
+            move that composition to the bottom without changing its value:
+
+
+        \end{itemize}
+      \end{column}
+      \begin{column}[T]{0.5\textwidth}
+            \begin{center}
+              \includegraphics[width=0.7\textwidth]{img/proof-pt2-ending.JPG}
+            \end{center}
+        \begin{itemize}
+          \item
+            Finally, since each $f_i$ is contained in a $U_{\mu_i}$,
+            \[\underbrace{p_{\lambda_1}([1]_{U_{\lambda_1}})p_{\lambda_2}([2]_{U_{\lambda_2}})p_{\lambda_3}([3]_{U_{\lambda_3}})}_{f_1} \underbrace{p_{\lambda_4}([4]_{U_{\lambda_4}})p_{\lambda_5}([5]_{U_{\lambda_5}})}_{f_2} ... = 1\]
+            \[\underbrace{p_{\mu_1}([1]_{U_{\mu_1}})p_{\mu_1}([2]_{U_{\mu_1}})p_{\mu_1}([3]_{U_{\mu_1}})}_{f_1} \underbrace{p_{\mu_2}([4]_{U_{\mu_2}})p_{\mu_2}([5]_{U_{\mu_2}})}_{f_2} ... = 1\]
+            \[\underbrace{p_{\mu_1}([123]_{U_{\mu_1}})}_{f_1} \underbrace{p_{\mu_2}([45]_{U_{\mu_2}})}_{f_2} ... = 1\]
+          \item Since we know $F$ maps those sections to $f_i$,
+
+            \[p_{\mu_1}([f_1])p_{\mu_2}([f_2]) ... p_{\mu_n}([f_n]) = 1\]
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{frame}
+
 
 
 \end{document}
